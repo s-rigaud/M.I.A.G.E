@@ -30,6 +30,12 @@
           </span>
           🏠 Accueil
         </router-link>
+        <router-link id="filter" class="navbar-item" to="/filter">
+          Filtrer
+        </router-link>
+        <router-link id="favorite" class="navbar-item" to="/favorite">
+          Favoris
+        </router-link>
         <router-link id="about-me" class="navbar-item" to="/about">
           ➕ A propos de moi
         </router-link>

@@ -17,29 +17,9 @@ export default {
   components: {
     CocktailCard,
   },
-  data() {
-    return {
-      cards: [
-        {
-          name: "Madeleine",
-          ingredients: [
-            { name: "Gin", quantity: "5cL" },
-            { name: "Amaretto", quantity: "4cL" },
-            { name: "Jus d'ananas", quantity: "10cL" },
-          ],
-        },
-        {
-          name: "Blue lagoon",
-          ingredients: [
-            { name: "Curaçao", quantity: "3cL" },
-            { name: "Vodka", quantity: "4cL" },
-            { name: "Citron", quantity: "2cL" },
-            { name: "Galçons", quantity: "" },
-          ],
-        },
-      ],
-    };
-  },
+  props: {
+    cards: Array,
+  }
 };
 </script>
 

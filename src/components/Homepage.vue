@@ -25,7 +25,7 @@
       </lord-icon>
     </div>
   </section>
-  <CocktailList />
+  <CocktailList :cards="this.cards" />
 </template>
 
 <script>
@@ -35,6 +35,45 @@ export default {
   name: "Homepage",
   components: {
     CocktailList,
+  },
+  beforeMount() {
+    // Calling API to retreieve 5 random cocktails
+    Array.from({length: 5}, () => this.retrieveSingleCocktail());
+  },
+  methods: {
+    async retrieveSingleCocktail() {
+      let response = await fetch(
+        "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+      );
+      if (response.ok) {
+        let json = await response.json();
+        this.cards.push(this.parseCocktailFromAPI(json.drinks[0]));
+      } else {
+        alert("HTTP-Error: " + response.status);
+      }
+    },
+    parseCocktailFromAPI(cocktailObject) {
+      console.log(cocktailObject);
+      let ingredients = [];
+      for (let i = 1; i < 10; i++) {
+        console.log(cocktailObject["strIngredient" + i])
+        if (cocktailObject["strIngredient" + i] != null) {
+          ingredients.push({
+            name: cocktailObject["strIngredient" + i],
+            quantity: cocktailObject["strMeasure" + i],
+          });
+        } else {
+          break;
+        }
+      }
+      console.log(ingredients);
+      return { name: cocktailObject.strDrink, ingredients: ingredients };
+    },
+  },
+  data() {
+    return {
+      cards: [],
+    };
   },
 };
 </script>
