@@ -10,7 +10,16 @@
   >
     <div class="card">
       <div class="card-content">
-        <p class="title is-4">{{ name }}</p>
+        <div class="card-image">
+          <figure class="image">
+            <img
+              src="https://source.unsplash.com/RWnpyGtY1aU"
+              alt="Placeholder image"
+              class="modal-button"
+              data-target="modal-image2"
+            />
+          </figure>
+        </div>
         <div class="content">
           <p>Ingredients:</p>
           <ul>

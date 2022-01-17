@@ -1,9 +1,9 @@
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-white" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
+      <a class="navbar-item" href="/">
         <img
-          src="https://bulma.io/images/bulma-logo.png"
+          src="http://www.miage.fr/wp-content/uploads/2020/11/MIAGE_LOGO-SEUL_COULEURS.png"
           width="112"
           height="28"
         />
@@ -14,7 +14,7 @@
         class="navbar-burger"
         aria-label="menu"
         aria-expanded="false"
-        data-target="navbarBasicExample"
+        data-target="navbarMenu"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -22,7 +22,7 @@
       </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navbarMenu" class="navbar-menu">
       <div class="navbar-start">
         <router-link id="accueil" class="navbar-item" to="/">
           <span class="icon">

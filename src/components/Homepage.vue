@@ -30,50 +30,25 @@
 
 <script>
 import CocktailList from "./CocktailList.vue";
+import CocktailRequestMixin from "../mixins/CocktailRequestMixin.js";
 
 export default {
   name: "Homepage",
   components: {
     CocktailList,
   },
+  mixins: [CocktailRequestMixin],
   beforeMount() {
-    // Calling API to retreieve 5 random cocktails
-    Array.from({length: 5}, () => this.retrieveSingleCocktail());
+    // Calling API to retreieve x random cocktails
+    Array.from({ length: 10 }, () => this.addRandomCocktalCard());
   },
   methods: {
-    async retrieveSingleCocktail() {
-      let response = await fetch(
-        "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+    async addRandomCocktalCard() {
+      const cocktailData = this.parseCocktailFromAPI(
+        await this.retrieveSingleCocktail()
       );
-      if (response.ok) {
-        let json = await response.json();
-        this.cards.push(this.parseCocktailFromAPI(json.drinks[0]));
-      } else {
-        alert("HTTP-Error: " + response.status);
-      }
+      this.cards.push(cocktailData);
     },
-    parseCocktailFromAPI(cocktailObject) {
-      console.log(cocktailObject);
-      let ingredients = [];
-      for (let i = 1; i < 10; i++) {
-        console.log(cocktailObject["strIngredient" + i])
-        if (cocktailObject["strIngredient" + i] != null) {
-          ingredients.push({
-            name: cocktailObject["strIngredient" + i],
-            quantity: cocktailObject["strMeasure" + i],
-          });
-        } else {
-          break;
-        }
-      }
-      console.log(ingredients);
-      return { name: cocktailObject.strDrink, ingredients: ingredients };
-    },
-  },
-  data() {
-    return {
-      cards: [],
-    };
   },
 };
 </script>
