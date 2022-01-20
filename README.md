@@ -18,3 +18,8 @@ npm run serve
 ```
 npm run build
 ```
+
+# Questions
+
+Comment stocker les cocktails favoris sur le long terme (cookies ?)
+Comment stocker les cocktails favoris entre les apps ? ()

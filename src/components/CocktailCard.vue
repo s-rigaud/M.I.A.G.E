@@ -13,7 +13,7 @@
         <div class="card-image">
           <figure class="image">
             <img
-              src="https://source.unsplash.com/RWnpyGtY1aU"
+              :src="image"
               alt="Placeholder image"
               class="modal-button"
               data-target="modal-image2"
@@ -21,7 +21,7 @@
           </figure>
         </div>
         <div class="content">
-          <p>Ingredients:</p>
+          <h2>{{name}}</h2>
           <ul>
             <li v-for="ingredient in ingredients" :key="ingredient.name">
               <p v-if="ingredient.quantity">
@@ -42,6 +42,7 @@ export default {
   props: {
     name: String,
     ingredients: Array,
+    image: String,
   },
 };
 </script>

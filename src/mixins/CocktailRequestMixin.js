@@ -43,7 +43,11 @@ const CocktailRequestMixin = {
                     break;
                 }
             }
-            return { name: cocktailObject.strDrink, ingredients: ingredients };
+            return {
+                name: cocktailObject.strDrink,
+                ingredients: ingredients,
+                image: cocktailObject["strDrinkThumb"]
+            };
         },
     }
 }

@@ -5,6 +5,7 @@
       :key="card.name"
       :name="card.name"
       :ingredients="card.ingredients"
+      :image="card.image"
     />
   </div>
 </template>
