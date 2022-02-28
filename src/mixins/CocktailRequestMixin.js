@@ -11,7 +11,7 @@ const CocktailRequestMixin = {
             let response = await fetch(`${this.BASE_URL}/random.php`);
             if (response.ok) {
                 let json = await response.json();
-                console.log("Retrieve a random cocktail from API", json.drinks[0]);
+                console.log(json);
                 return json.drinks[0];
             } else {
                 alert("CocktailAPI Error : HTTP-" + response.status);
@@ -21,14 +21,13 @@ const CocktailRequestMixin = {
             let response = await fetch(`${this.BASE_URL}/lookup.php?i=${cocktailId}`);
             if (response.ok) {
                 let json = await response.json();
-                console.log("Retrieve a random cocktail from API", json.drinks[0]);
-                console.log(json.drinks[0]);
                 return json.drinks[0];
             } else {
                 alert("CocktailAPI Error : HTTP-" + response.status);
             }
         },
         async retrieveCocktailsStartingWith(letter) {
+            console.log(letter)
             let response = await fetch(`${this.BASE_URL}/search.php?f=${letter}`);
             if (response.ok) {
                 let json = await response.json();

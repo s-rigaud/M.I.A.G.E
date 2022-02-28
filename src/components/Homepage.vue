@@ -38,16 +38,28 @@ export default {
     CocktailList,
   },
   mixins: [CocktailRequestMixin],
-  beforeMount() {
-    // Calling API to retrieve x random cocktails
-    Array.from({ length: 10 }, () => this.addRandomCocktailCard());
+  mounted() {
+    this.addRandomCocktailCards();
   },
   methods: {
-    async addRandomCocktailCard() {
-      const cocktailData = this.parseCocktailFromAPI(
-        await this.retrieveRandomCocktail()
-      );
-      this.cards.push(cocktailData);
+    // Calling API to retrieve 10 random cocktails
+    async addRandomCocktailCards() {
+      const existingData = localStorage.getItem("HomepageCocktails");
+      if (existingData) {
+        for(let cocktail of JSON.parse(existingData)){
+          this.cards.push(cocktail);
+        }
+      } else {
+        let cocktails = [];
+        for (let i = 0; i < 10; i++) {
+          const cocktailData = this.parseCocktailFromAPI(
+            await this.retrieveRandomCocktail()
+          );
+          cocktails.push(cocktailData);
+          this.cards.push(cocktailData);
+        }
+        localStorage.setItem("HomepageCocktails", JSON.stringify(cocktails));
+      }
     },
   },
 };
