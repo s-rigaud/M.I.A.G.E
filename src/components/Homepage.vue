@@ -39,13 +39,13 @@ export default {
   },
   mixins: [CocktailRequestMixin],
   beforeMount() {
-    // Calling API to retreieve x random cocktails
-    Array.from({ length: 10 }, () => this.addRandomCocktalCard());
+    // Calling API to retrieve x random cocktails
+    Array.from({ length: 10 }, () => this.addRandomCocktailCard());
   },
   methods: {
-    async addRandomCocktalCard() {
+    async addRandomCocktailCard() {
       const cocktailData = this.parseCocktailFromAPI(
-        await this.retrieveSingleCocktail()
+        await this.retrieveRandomCocktail()
       );
       this.cards.push(cocktailData);
     },

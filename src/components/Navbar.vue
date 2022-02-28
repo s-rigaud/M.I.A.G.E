@@ -37,7 +37,7 @@
           Favoris
         </router-link>
         <router-link id="about-me" class="navbar-item" to="/about">
-          ➕ A propos de moi
+          ➕ A propos de nous
         </router-link>
       </div>
     </div>

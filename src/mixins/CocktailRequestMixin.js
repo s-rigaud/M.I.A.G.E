@@ -7,11 +7,22 @@ const CocktailRequestMixin = {
     },
     methods: {
         // API connection logic
-        async retrieveSingleCocktail() {
+        async retrieveRandomCocktail() {
             let response = await fetch(`${this.BASE_URL}/random.php`);
             if (response.ok) {
                 let json = await response.json();
                 console.log("Retrieve a random cocktail from API", json.drinks[0]);
+                return json.drinks[0];
+            } else {
+                alert("CocktailAPI Error : HTTP-" + response.status);
+            }
+        },
+        async retrieveSingleCocktail(cocktailId) {
+            let response = await fetch(`${this.BASE_URL}/lookup.php?i=${cocktailId}`);
+            if (response.ok) {
+                let json = await response.json();
+                console.log("Retrieve a random cocktail from API", json.drinks[0]);
+                console.log(json.drinks[0]);
                 return json.drinks[0];
             } else {
                 alert("CocktailAPI Error : HTTP-" + response.status);
@@ -44,9 +55,10 @@ const CocktailRequestMixin = {
                 }
             }
             return {
+                id: cocktailObject.idDrink,
                 name: cocktailObject.strDrink,
                 ingredients: ingredients,
-                image: cocktailObject["strDrinkThumb"]
+                image: cocktailObject.strDrinkThumb,
             };
         },
     }

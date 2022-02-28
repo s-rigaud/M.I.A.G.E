@@ -3,6 +3,7 @@
     <CocktailCard
       v-for="card in cards"
       :key="card.name"
+      :id="card.id"
       :name="card.name"
       :ingredients="card.ingredients"
       :image="card.image"
