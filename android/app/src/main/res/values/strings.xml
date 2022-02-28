@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">m.i.a.g.e</string>
+    <string name="title_activity_main">m.i.a.g.e</string>
+    <string name="package_name">m.i.a.g.e.cocktailApp</string>
+    <string name="custom_url_scheme">m.i.a.g.e.cocktailApp</string>
+</resources>
