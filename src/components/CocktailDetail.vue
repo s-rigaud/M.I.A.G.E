@@ -31,6 +31,8 @@
 
 <script>
 import CocktailRequestMixin from "../mixins/CocktailRequestMixin.js";
+import { PluginListenerHandle } from '@capacitor/core';
+import { Motion } from '@capacitor/motion';
 
 export default {
   name: "CocktailFilter",
@@ -42,9 +44,21 @@ export default {
   mounted() {
     this.retrieveCocktailDetail();
   },
+  beforeUnmount(){
+    // Remove all listeners
+    //Motion.removeAllListeners();
+    // Stop the acceleration listener
+    /*if (this.accelHandler) {
+        this.accelHandler.remove();
+    }*/
+  },
+  mounted(){
+    // this.setAccelHandler();
+  },
   data() {
     return {
       cocktail: { id: this.cocktailId },
+      accelHandler: PluginListenerHandle
     };
   },
   methods: {
@@ -52,6 +66,21 @@ export default {
       const apiCocktails = await this.retrieveSingleCocktail(this.cocktailId);
       this.cocktail = this.parseCocktailFromAPI(apiCocktails);
     },
+    async setAccelHandler(){
+      // Once the user approves, can start listening:
+      await Motion.addListener('accel', event => {
+        if(event.acceleration.x > 14 
+          || event.acceleration.x < -14
+          || event.acceleration.y > 14
+          || event.acceleration.y < -14
+          && event.interval > 8){
+          console.log ('accel interval', event.interval);
+          console.log ('accel x', event.acceleration.x);
+          console.log ('accel y', event.acceleration.y);
+          console.log('Device motion event:', event);
+          }
+      });
+    }
   },
 };
 </script>
