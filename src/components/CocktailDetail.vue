@@ -1,4 +1,5 @@
 <template>
+  <button @click="$router.go(-1)" class="button is-dark">Back to list</button>
   <div class="card">
     <div class="card-content">
       <div class="card-image">
@@ -38,7 +39,6 @@
       Supprimer des favoris
     </button>
   </div>
-  <button @click="$router.go(-1)" class="button is-dark">Back to list</button>
 </template>
 
 <script>
@@ -98,6 +98,7 @@ export default {
         "FavoriteCocktails",
         JSON.stringify({ cocktails: favoriteCocktails })
       );
+      this.$router.push({ name: "Favorite" });
     },
     removeFromFavorite() {
       let favoriteCocktails = this.loadFavoriteCocktails();
@@ -109,6 +110,7 @@ export default {
         "FavoriteCocktails",
         JSON.stringify({ cocktails: favoriteCocktails })
       );
+      this.$router.go(-1);
     },
     removeFromArray(array, element) {
       return array.filter(function (value) {

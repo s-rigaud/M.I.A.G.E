@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar box" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item " href="/">
+      <a class="navbar-item" href="/">
         <img
           src="http://www.miage.fr/wp-content/uploads/2020/11/MIAGE_LOGO-SEUL_COULEURS.png"
           width="112"
@@ -26,7 +26,7 @@
 
     <div class="navbar-menu" :class="{ 'is-active': mobileMenuActive }">
       <div class="navbar-start">
-        <router-link id="accueil" class="navbar-item" to="/">
+        <router-link id="home" class="navbar-item" to="/">
           🏠 Accueil
         </router-link>
         <router-link id="filter" class="navbar-item" to="/filter">
@@ -63,10 +63,11 @@ export default {
   height: 50px;
   width: 35px;
 }
+.navbar-item {
+  color: black !important;
+}
 .router-link-active {
-  font-weight: bold;
-  text-decoration: underline;
-  text-decoration-color: #399953;
+  font-weight: 900;
 }
 
 .animated {
