@@ -15,7 +15,7 @@
             <figure class="image">
               <img
                 :src="image"
-                alt="Placeholder image"
+                alt="Cocktail image"
                 class="modal-button"
                 data-target="modal-image2"
               />
@@ -49,3 +49,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.card:hover {
+  transform: scale(110%);
+}
+</style>

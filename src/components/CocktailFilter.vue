@@ -32,7 +32,9 @@ export default {
   watch: {
     // Called only once
     letter: function (val) {
+      this.selectedLetter = val;
       this.filterCocktailsByLetter(val);
+      console.log(this.letter, "  ", this.selectedLetter);
     },
   },
   mounted() {
@@ -60,13 +62,12 @@ export default {
       this.filterCocktailsByLetter(letter);
     },
     updateBrowserUrl(val) {
-      console.log("patate called");
       history.pushState(
         {
-          id: "about-me",
+          id: "Filtering By Letter",
           source: "web",
         },
-        "About me",
+        "Filtering By Letter",
         `/filter/${val}`
       );
     },

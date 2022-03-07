@@ -26,7 +26,7 @@
     </div>
   </div>
   <!-- Tried all Vue hooks but none of them seems to save cocktail list when router go back-->
-  <button @click="$router.go(-1)">Back to list</button>
+  <button @click="$router.go(-1)" class="button is-dark">Back to list</button>
 </template>
 
 <script>
@@ -59,5 +59,8 @@ export default {
 <style scoped>
 #cocktail-image {
   width: 400px;
+}
+button:hover {
+  transform: scale(110%);
 }
 </style>
