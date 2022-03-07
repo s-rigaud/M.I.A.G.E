@@ -34,7 +34,6 @@ export default {
     letter: function (val) {
       this.selectedLetter = val;
       this.filterCocktailsByLetter(val);
-      console.log(this.letter, "  ", this.selectedLetter);
     },
   },
   mounted() {

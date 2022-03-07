@@ -13,7 +13,10 @@
         </figure>
       </div>
       <div class="content">
-        <h2>{{ cocktail.name }}</h2>
+        <h2 v-if="isFavorite()">{{ cocktail.name }} ⭐</h2>
+        <h2 v-else>
+          {{ cocktail.name }}
+        </h2>
         <ul>
           <li v-for="ingredient in cocktail.ingredients" :key="ingredient.name">
             <p v-if="ingredient.quantity">
@@ -24,27 +27,36 @@
         </ul>
       </div>
     </div>
+    <button
+      @click="addToFavorite"
+      class="button is-primary"
+      v-if="!isFavorite()"
+    >
+      Ajouter aux favoris
+    </button>
+    <button @click="removeFromFavorite" class="button is-danger" v-else>
+      Supprimer des favoris
+    </button>
   </div>
-  <!-- Tried all Vue hooks but none of them seems to save cocktail list when router go back-->
   <button @click="$router.go(-1)" class="button is-dark">Back to list</button>
 </template>
 
 <script>
 import CocktailRequestMixin from "../mixins/CocktailRequestMixin.js";
-import { PluginListenerHandle } from '@capacitor/core';
-import { Motion } from '@capacitor/motion';
+import { PluginListenerHandle } from "@capacitor/core";
+import { Motion } from "@capacitor/motion";
 
 export default {
   name: "CocktailFilter",
   props: {
     cocktailId: String,
   },
-  components: {},
   mixins: [CocktailRequestMixin],
   mounted() {
     this.retrieveCocktailDetail();
+    // this.setAccelHandler();
   },
-  beforeUnmount(){
+  beforeUnmount() {
     // Remove all listeners
     //Motion.removeAllListeners();
     // Stop the acceleration listener
@@ -52,13 +64,10 @@ export default {
         this.accelHandler.remove();
     }*/
   },
-  mounted(){
-    // this.setAccelHandler();
-  },
   data() {
     return {
       cocktail: { id: this.cocktailId },
-      accelHandler: PluginListenerHandle
+      accelHandler: PluginListenerHandle,
     };
   },
   methods: {
@@ -66,21 +75,53 @@ export default {
       const apiCocktails = await this.retrieveSingleCocktail(this.cocktailId);
       this.cocktail = this.parseCocktailFromAPI(apiCocktails);
     },
-    async setAccelHandler(){
+    async setAccelHandler() {
       // Once the user approves, can start listening:
-      await Motion.addListener('accel', event => {
-        if(event.acceleration.x > 14 
-          || event.acceleration.x < -14
-          || event.acceleration.y > 14
-          || event.acceleration.y < -14
-          && event.interval > 8){
-          console.log ('accel interval', event.interval);
-          console.log ('accel x', event.acceleration.x);
-          console.log ('accel y', event.acceleration.y);
-          console.log('Device motion event:', event);
-          }
+      await Motion.addListener("accel", (event) => {
+        if (
+          event.acceleration.x > 14 ||
+          event.acceleration.x < -14 ||
+          event.acceleration.y > 14 ||
+          (event.acceleration.y < -14 && event.interval > 8)
+        ) {
+          console.log("accel interval", event.interval);
+          console.log("accel x", event.acceleration.x);
+          console.log("accel y", event.acceleration.y);
+          console.log("Device motion event:", event);
+        }
       });
-    }
+    },
+    addToFavorite() {
+      let favoriteCocktails = this.loadFavoriteCocktails();
+      favoriteCocktails.push(this.cocktailId);
+      localStorage.setItem(
+        "FavoriteCocktails",
+        JSON.stringify({ cocktails: favoriteCocktails })
+      );
+    },
+    removeFromFavorite() {
+      let favoriteCocktails = this.loadFavoriteCocktails();
+      favoriteCocktails = this.removeFromArray(
+        favoriteCocktails,
+        this.cocktailId
+      );
+      localStorage.setItem(
+        "FavoriteCocktails",
+        JSON.stringify({ cocktails: favoriteCocktails })
+      );
+    },
+    removeFromArray(array, element) {
+      return array.filter(function (value) {
+        return value != element;
+      });
+    },
+    isFavorite() {
+      return this.loadFavoriteCocktails().includes(this.cocktailId);
+    },
+    loadFavoriteCocktails() {
+      const favoriteCocktails = localStorage.getItem("FavoriteCocktails");
+      return favoriteCocktails ? JSON.parse(favoriteCocktails).cocktails : [];
+    },
   },
 };
 </script>
