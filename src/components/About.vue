@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mx-3">
         <p class="title" style="display: inline-block">Pitchounous & CO</p>
         
         <div class="columns" align="left">
@@ -16,10 +16,8 @@
 
                 <h1 class="subtitle has-text-weight-bold">Nous contacter</h1>
                 <ul>
+
                     <li> pitchounous&co@gmail.com</li>
-                    <span class="icon">
-                        <i class="fas fa-home"></i>
-                    </span>
                     <li> 06 66 77 88 99 </li>
                     <li> 25 rue de la Grange-au-Loup </li>
                     <li> 44000 Nantes</li>
@@ -27,9 +25,24 @@
 
                 <h1 class="subtitle has-text-weight-bold">Nos réseaux sociaux</h1>
                 <div>
-                    <span class="icon is-large">
-                        <ion-icon size = "large" name="logo-linkedin"></ion-icon>
-                    </span>
+                    <img
+                    class="navbar-brand-img mx-3"
+                    :src="image2"
+                    height="32"
+                    width="32"
+                    />
+                    <img
+                    class="navbar-brand-img mx-3"
+                    :src="image3"
+                    height="32"
+                    width="32"
+                    />
+                    <img
+                    class="navbar-brand-img mx-3"
+                    :src="image4"
+                    height="32"
+                    width="32"
+                    />
                 </div>
             </div>
             <div class="column">
@@ -49,6 +62,9 @@ export default {
     data(){
         return {
             image1: "/assets/bird.png",
+            image2: "/assets/logoTwitter.png",
+            image3: "/assets/logoInsta.png",
+            image4: "/assets/logoFacebook.png",
         }
     }
 }
