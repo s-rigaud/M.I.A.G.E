@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar is-white" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="/">
+      <a class="navbar-item animated" href="/">
         <img
           src="http://www.miage.fr/wp-content/uploads/2020/11/MIAGE_LOGO-SEUL_COULEURS.png"
           width="112"
@@ -15,6 +15,8 @@
         aria-label="menu"
         aria-expanded="false"
         data-target="navbarMenu"
+        :class="{ 'is-active': mobileMenuActive }"
+        @click="mobileMenuActive = !mobileMenuActive"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -22,7 +24,7 @@
       </a>
     </div>
 
-    <div id="navbarMenu" class="navbar-menu">
+    <div id="navbarMenu" :class="{ 'is-active': mobileMenuActive }">
       <div class="navbar-start">
         <router-link id="accueil" class="navbar-item" to="/">
           <span class="icon">
@@ -31,10 +33,10 @@
           🏠 Accueil
         </router-link>
         <router-link id="filter" class="navbar-item" to="/filter">
-          Filtrer
+          ⚙️ Filtrer
         </router-link>
         <router-link id="favorite" class="navbar-item" to="/favorite">
-          Favoris
+          ⭐ Favoris
         </router-link>
         <router-link id="about-me" class="navbar-item" to="/about">
           ➕ A propos de nous
@@ -47,6 +49,11 @@
 <script>
 export default {
   name: "Navbar",
+  data() {
+    return {
+      mobileMenuActive: false,
+    }
+  }
 };
 </script>
 

@@ -1,0 +1,13 @@
+[1mdiff --git a/src/components/About.vue b/src/components/About.vue[m
+[1mindex d947f88..63f04a4 100644[m
+[1m--- a/src/components/About.vue[m
+[1m+++ b/src/components/About.vue[m
+[36m@@ -25,7 +25,7 @@[m
+                 <h1 class="subtitle has-text-weight-bold">Nos réseaux sociaux</h1>[m
+                 <div>[m
+                     <span class="icon is-large">[m
+[31m-                        <ion-icon size = "large" name="logo-linkedin"></ion-icon>[m
+[32m+[m[32m                        <ion-icon size = "large" name="person"></ion-icon>[m
+                     </span>[m
+                 </div>[m
+             </div>[m
