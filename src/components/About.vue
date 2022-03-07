@@ -17,6 +17,9 @@
                 <h1 class="subtitle has-text-weight-bold">Nous contacter</h1>
                 <ul>
                     <li> pitchounous&co@gmail.com</li>
+                    <span class="icon">
+                        <i class="fas fa-home"></i>
+                    </span>
                     <li> 06 66 77 88 99 </li>
                     <li> 25 rue de la Grange-au-Loup </li>
                     <li> 44000 Nantes</li>
