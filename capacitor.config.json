@@ -1,0 +1,6 @@
+{
+  "appId": "m.i.a.g.e.cocktailApp",
+  "appName": "m.i.a.g.e",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
