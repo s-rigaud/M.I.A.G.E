@@ -1,5 +1,4 @@
 <template>
-  <h1>{{ cocktail.id }}</h1>
   <div class="card">
     <div class="card-content">
       <div class="card-image">
@@ -26,6 +25,8 @@
       </div>
     </div>
   </div>
+  <!-- Tried all Vue hooks but none of them seems to save cocktail list when router go back-->
+  <button @click="$router.go(-1)" class="button is-dark">Back to list</button>
 </template>
 
 <script>
@@ -40,7 +41,7 @@ export default {
   },
   components: {},
   mixins: [CocktailRequestMixin],
-  beforeMount() {
+  mounted() {
     this.retrieveCocktailDetail();
   },
   beforeUnmount(){
@@ -85,7 +86,10 @@ export default {
 </script>
 
 <style scoped>
-    #cocktail-image{
-        max-width: 400px;
-    }
+#cocktail-image {
+  width: 400px;
+}
+button:hover {
+  transform: scale(110%);
+}
 </style>

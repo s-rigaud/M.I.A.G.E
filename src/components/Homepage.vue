@@ -25,6 +25,8 @@
       </lord-icon>
     </div>
   </section>
+
+  <p class="subtitle is-3">Meilleurs cocktails du jour</p>
   <CocktailList :cards="this.cards" />
 </template>
 
@@ -38,16 +40,44 @@ export default {
     CocktailList,
   },
   mixins: [CocktailRequestMixin],
-  beforeMount() {
-    // Calling API to retrieve x random cocktails
-    Array.from({ length: 10 }, () => this.addRandomCocktailCard());
+  mounted() {
+    this.addRandomCocktailCards();
   },
   methods: {
-    async addRandomCocktailCard() {
-      const cocktailData = this.parseCocktailFromAPI(
-        await this.retrieveRandomCocktail()
-      );
-      this.cards.push(cocktailData);
+    /* Calling API to get the 10 random cocktails of today
+       or retrieve them from local storage if they have been already
+       saved today
+    */
+    async addRandomCocktailCards() {
+      const existingData = localStorage.getItem("HomepageCocktails");
+      if (
+        existingData &&
+        JSON.parse(existingData)["expire"] > new Date().getTime()
+      ) {
+        for (let cocktail of JSON.parse(existingData)["cocktails"]) {
+          this.cards.push(cocktail);
+        }
+        console.log("Cocktails have been restored from local storage");
+      } else {
+        let cocktails = [];
+        for (let i = 0; i < 10; i++) {
+          const cocktailData = this.parseCocktailFromAPI(
+            await this.retrieveRandomCocktail()
+          );
+          cocktails.push(cocktailData);
+          this.cards.push(cocktailData);
+        }
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        localStorage.setItem(
+          "HomepageCocktails",
+          JSON.stringify({ cocktails: cocktails, expire: tomorrow.getTime() })
+        );
+        console.log(
+          "Cocktails have been downloaded from API and saved to local storage"
+        );
+      }
     },
   },
 };

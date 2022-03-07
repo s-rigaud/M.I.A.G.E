@@ -20,8 +20,14 @@ const routes = [
     },
     {
         path: '/filter',
-        name: 'Filter',
+        name: 'Filter Default',
         component: CocktailFilter,
+    },
+    {
+        path: '/filter/:letter',
+        name: 'Filter By Letter',
+        component: CocktailFilter,
+        props: true,
     },
     {
         path: '/favorite',

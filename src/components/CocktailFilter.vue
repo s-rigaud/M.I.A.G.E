@@ -1,13 +1,13 @@
 <template>
   <div id="letter-selector">
     <button
-      v-for="letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')"
+      v-for="letter in 'abcdefghijklmnopqrstuvwxyz'.split('')"
       :key="letter"
       @click="updateLetterFiltering"
       class="button"
-      :class="{ 'is-primary is-light' : letter === this.selectedLetter}"
+      :class="{ 'is-primary is-light': letter === this.selectedLetter }"
     >
-      {{ letter }}
+      {{ letter.toUpperCase() }}
     </button>
   </div>
   <CocktailList :cards="this.cards" />
@@ -19,28 +19,57 @@ import CocktailRequestMixin from "../mixins/CocktailRequestMixin.js";
 
 export default {
   name: "CocktailFilter",
+  props: {
+    letter: {
+      type: String,
+      required: false,
+    },
+  },
   components: {
     CocktailList,
   },
   mixins: [CocktailRequestMixin],
-  beforeMount() {
-    this.filterCocktailsByLetter("a");
+  watch: {
+    // Called only once
+    letter: function (val) {
+      this.selectedLetter = val;
+      this.filterCocktailsByLetter(val);
+      console.log(this.letter, "  ", this.selectedLetter);
+    },
   },
-  data(){
-    return {
-      selectedLetter: "A",
+  mounted() {
+    if (this.letter) {
+      this.filterCocktailsByLetter(this.letter);
+    } else {
+      this.$router.push({ name: "Filter By Letter", params: { letter: "a" } });
     }
+  },
+  data() {
+    return {
+      selectedLetter: this.letter,
+    };
   },
   methods: {
     async filterCocktailsByLetter(letter) {
       const apiCocktails = await this.retrieveCocktailsStartingWith(letter);
       const formattedCocktails = apiCocktails.map(this.parseCocktailFromAPI);
+      this.updateBrowserUrl(letter);
       this.cards = formattedCocktails;
     },
     updateLetterFiltering(event) {
-      const letter = event.target.innerHTML;
+      const letter = event.target.innerHTML.toLowerCase();
       this.selectedLetter = letter;
-      this.filterCocktailsByLetter(letter.toLowerCase());
+      this.filterCocktailsByLetter(letter);
+    },
+    updateBrowserUrl(val) {
+      history.pushState(
+        {
+          id: "Filtering By Letter",
+          source: "web",
+        },
+        "Filtering By Letter",
+        `/filter/${val}`
+      );
     },
   },
 };
