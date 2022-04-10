@@ -1,15 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Homepage from '../components/Homepage.vue'
-import About from '../components/About.vue'
-import CocktailFilter from '../components/CocktailFilter.vue'
-import CocktailDetail from '../components/CocktailDetail.vue'
-import FavoriteCocktailList from '../components/FavoriteCocktailList.vue'
+import Homepage from '@/views/Homepage.vue'
+import About from '@/views/About.vue'
+import CocktailFilter from '@/views/CocktailFilter.vue'
+import CocktailDetail from '@/views/CocktailDetail.vue'
+import FavoriteCocktailList from '@/views/FavoriteCocktailList.vue'
 
 const routes = [
     {
         path: '/',
-        name: 'home',
+        name: 'Home',
         component: Homepage,
     },
     {

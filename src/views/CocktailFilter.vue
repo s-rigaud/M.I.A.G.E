@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import CocktailList from "./CocktailList.vue";
-import CocktailRequestMixin from "../mixins/CocktailRequestMixin.js";
+import CocktailList from "@/components/CocktailList.vue";
+import CocktailRequestMixin from "@/mixins/CocktailRequestMixin.js";
 
 export default {
   name: "CocktailFilter",
@@ -36,7 +36,7 @@ export default {
       this.filterCocktailsByLetter(val);
     },
   },
-  mounted() {
+  beforeMount() {
     if (this.letter) {
       this.filterCocktailsByLetter(this.letter);
     } else {

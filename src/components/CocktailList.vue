@@ -1,8 +1,8 @@
 <template>
-  <div v-if="cards.length > 0" class="columns is-multiline">
+  <div id="cocktail-list" v-if="cards.length > 0" class="columns is-multiline">
     <CocktailCard
       v-for="card in cards"
-      :key="card.name"
+      :key="card.id"
       :id="card.id"
       :name="card.name"
       :ingredients="card.ingredients"
@@ -11,6 +11,9 @@
   </div>
   <div v-else>
     <h1>Pas de cocktails trouvés pour cette page</h1>
+    <button @click="$router.push({ name: 'Home' })" class="button is-dark">
+      Retourner à l'accueil
+    </button>
   </div>
 </template>
 
@@ -27,3 +30,13 @@ export default {
   },
 };
 </script>
+<style scoped>
+#cocktail-list {
+  align-items: flex-end;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+</style>

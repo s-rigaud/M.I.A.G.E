@@ -14,10 +14,7 @@
         </figure>
       </div>
       <div class="content">
-        <h2 v-if="isFavorite()">{{ cocktail.name }} ⭐</h2>
-        <h2 v-else>
-          {{ cocktail.name }}
-        </h2>
+        <h2>{{ cocktail.name }}</h2>
         <ul>
           <li v-for="ingredient in cocktail.ingredients" :key="ingredient.name">
             <p v-if="ingredient.quantity">
@@ -28,21 +25,17 @@
         </ul>
       </div>
     </div>
-    <button
-      @click="addToFavorite"
-      class="button is-primary"
-      v-if="!isFavorite()"
-    >
-      Ajouter aux favoris
+    <button @click="addToFavorite" class="btn add" v-if="!isFavorite()">
+      Ajouter aux favoris ⭐
     </button>
-    <button @click="removeFromFavorite" class="button is-danger" v-else>
-      Supprimer des favoris
+    <button @click="removeFromFavorite" class="btn remove" v-else>
+      Supprimer des favoris ❌
     </button>
   </div>
 </template>
 
 <script>
-import CocktailRequestMixin from "../mixins/CocktailRequestMixin.js";
+import CocktailRequestMixin from "@/mixins/CocktailRequestMixin.js";
 import { PluginListenerHandle } from "@capacitor/core";
 import { Motion } from "@capacitor/motion";
 
@@ -52,7 +45,7 @@ export default {
     cocktailId: String,
   },
   mixins: [CocktailRequestMixin],
-  mounted() {
+  beforeMount() {
     this.retrieveCocktailDetail();
     // this.setAccelHandler();
   },
@@ -132,7 +125,58 @@ export default {
 #cocktail-image {
   width: 400px;
 }
-button:hover {
+
+.btn {
+  width: 200px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+
+  border-radius: 50px;
+  moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn:hover {
+  background-position: 100% 0;
+  moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
   transform: scale(110%);
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn.add {
+  background-image: linear-gradient(
+    to right,
+    #25aae1,
+    #40e495,
+    #30dd8a,
+    #2bb673
+  );
+  box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+}
+
+.btn.remove {
+  background-image: linear-gradient(
+    to right,
+    #eb3941,
+    #f15e64,
+    #e14e53,
+    #e2373f
+  );
+  box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);
 }
 </style>

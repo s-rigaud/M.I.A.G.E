@@ -7,6 +7,7 @@
       is-full-mobile
       is-one-quarter-widescreen
     "
+    style="display: flex"
   >
     <div class="card">
       <router-link :to="{ name: 'CocktailDetail', params: { cocktailId: id } }">
@@ -51,6 +52,12 @@ export default {
 </script>
 <style scoped>
 .card:hover {
-  transform: scale(110%);
+  transition: all 0.4s ease-in-out;
+  transform: scale(105%);
+}
+
+/* From Bootstrap */
+ul {
+  color: black !important;
 }
 </style>

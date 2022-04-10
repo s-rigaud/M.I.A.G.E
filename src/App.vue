@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="inside-app">
     <Navbar />
 
     <div class="container my-container">
@@ -26,5 +26,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-height: 100vh;
+}
+#inside-app{
+    min-height: 100vh;
+}
+.container {
+  background-color: #ccc;
+  padding: 10px;
+  min-height: 100vh;
+}
+
+body {
+  min-height: 100vh;
 }
 </style>

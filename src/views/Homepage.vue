@@ -1,38 +1,40 @@
 <template>
   <section class="hero is-info is-small">
     <div class="hero-body">
-      <p class="title" style="display: inline-block">M.I.A.G.E</p>
+      <p class="title" style="display: inline-block">
+        Bienvenue sur le site M.I.A.G.E
+      </p>
       <lord-icon
         src="https://cdn.lordicon.com/slkvcfos.json"
         trigger="loop"
         delay="5000"
-        colors="primary:#121331,secondary:#e88c30"
+        colors="primary:#fff,secondary:#e88c30"
         stroke="62"
         style="width: 60px; height: 60px; display: inline-block"
       >
       </lord-icon>
       <br />
 
-      <p class="subtitle is-italic" style="display: inline-block">
-        Tous les meilleurs cocktails de soirées
-      </p>
+      <h1 id="title" class="subtitle is-italic" style="display: inline-block">
+        Voici les meilleurs cocktails du jour
+      </h1>
       <lord-icon
-        src="https://cdn.lordicon.com/ybgqhhgb.json"
+        id="glass"
+        src="https://cdn.lordicon.com/szzsfswk.json"
         trigger="loop"
-        colors="primary:#121331,secondary:#e88c30"
-        style="width: 50px; height: 50px; display: inline-block"
+        colors="primary:#fff,secondary:#c76f16"
+        stroke="70"
       >
       </lord-icon>
     </div>
   </section>
 
-  <p class="subtitle is-3">Meilleurs cocktails du jour</p>
   <CocktailList :cards="this.cards" />
 </template>
 
 <script>
-import CocktailList from "./CocktailList.vue";
-import CocktailRequestMixin from "../mixins/CocktailRequestMixin.js";
+import CocktailList from "@/components/CocktailList.vue";
+import CocktailRequestMixin from "@/mixins/CocktailRequestMixin.js";
 
 export default {
   name: "Homepage",
@@ -40,7 +42,7 @@ export default {
     CocktailList,
   },
   mixins: [CocktailRequestMixin],
-  mounted() {
+  beforeMount() {
     this.addRandomCocktailCards();
   },
   methods: {
@@ -82,3 +84,10 @@ export default {
   },
 };
 </script>
+<style scoped>
+#glass {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+}
+</style>

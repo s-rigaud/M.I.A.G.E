@@ -26,16 +26,36 @@
 
     <div class="navbar-menu" :class="{ 'is-active': mobileMenuActive }">
       <div class="navbar-start">
-        <router-link id="home" class="navbar-item" to="/">
+        <router-link
+          id="home"
+          class="navbar-item"
+          to="/"
+          @click="mobileMenuActive = !mobileMenuActive"
+        >
           🏠 Accueil
         </router-link>
-        <router-link id="filter" class="navbar-item" to="/filter">
+        <router-link
+          id="filter"
+          class="navbar-item"
+          to="/filter"
+          @click="mobileMenuActive = !mobileMenuActive"
+        >
           ⚙️ Filtrer
         </router-link>
-        <router-link id="favorite" class="navbar-item" to="/favorite">
+        <router-link
+          id="favorite"
+          class="navbar-item"
+          to="/favorite"
+          @click="mobileMenuActive = !mobileMenuActive"
+        >
           ⭐ Favoris
         </router-link>
-        <router-link id="about-me" class="navbar-item" to="/about">
+        <router-link
+          id="about-me"
+          class="navbar-item"
+          to="/about"
+          @click="mobileMenuActive = !mobileMenuActive"
+        >
           ➕ A propos de nous
         </router-link>
       </div>
@@ -57,12 +77,15 @@ export default {
 <style scoped>
 .navbar {
   height: 70px;
+  padding: 0px;
+  margin-bottom: 0px;
 }
 .navbar-brand-img {
   margin-left: 10px;
   height: 50px;
   width: 35px;
 }
+
 .navbar-item {
   color: black !important;
 }
