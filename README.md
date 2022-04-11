@@ -30,7 +30,11 @@ npx cap open
 the project will be launched on Android studio
 Wait until the build is done
 Start the projec on your Android device by click on the green arrow
-# Questions
 
-Comment stocker les cocktails favoris sur le long terme (cookies ?)
-Comment stocker les cocktails favoris entre les apps ? ()
+## Checklist
+
+[x] Une API REST (REST-like mais la seule [bonne API gratuite de cocktail](https://www.thecocktaildb.com/))
+[x] Projet VueJS qui se lance sans soucis d'install 
+[x] Un menu et au moins 4 pages
+[x] Une application esponsive et sur desktop, tablette, paysage et portrait
+[x] L’application doit utiliser au moins deux plugins Capacitor (LocalNotifications & Vibrations)
