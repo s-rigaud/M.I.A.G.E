@@ -11,6 +11,7 @@
     "@capacitor/android": "^3.4.3",
     "@capacitor/cli": "^3.4.1",
     "@capacitor/core": "^3.4.1",
+    "@capacitor/local-notifications": "^1.1.0",
     "@capacitor/motion": "^1.0.5",
     "core-js": "^3.6.5",
     "normalize.css": "^8.0.1",
