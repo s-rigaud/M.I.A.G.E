@@ -50,6 +50,9 @@ export default {
     this.retrieveCocktailDetail();
     // this.setAccelHandler();
   },
+  mounted(){
+    LocalNotifications.requestPermissions();
+  },
   beforeUnmount() {
     // Remove all listeners
     //Motion.removeAllListeners();
@@ -93,18 +96,22 @@ export default {
         JSON.stringify({ cocktails: favoriteCocktails })
       );
       this.$router.push({ name: "Favorite" });
-      LocalNotifications.schedule({
-      notifications: [
-        {
-          title: "Cocktail added to your favorites",
-          body: this.cocktail.name + " has been added to your list of favorite cocktails",
-          largeBody	: this.cocktail.name + " has been added to your list of favorite cocktails",
-          id: Date.now(),
-          //sound: "../assets/ShakerSound.mp3",
-          smallIcon:"ic_launcher.png"
+      LocalNotifications.checkPermissions().then(
+        result => {
+          if(result.display === 'granted'){
+            LocalNotifications.schedule({
+              notifications: [
+                {
+                  title: "Cocktail added to your favourites",
+                  body: this.cocktail.name + " has been added to your list of favourites cocktails",
+                  largeBody	: this.cocktail.name + " has been added to your list of favourites cocktails",
+                  id: Date.now()
+                }
+              ]
+            });
+          }
         }
-      ]
-    });
+      )
     },
     removeFromFavorite() {
       let favoriteCocktails = this.loadFavoriteCocktails();
@@ -120,9 +127,9 @@ export default {
       LocalNotifications.schedule({
       notifications: [
         {
-          title: "Cocktail removed from your favorites",
-          body: this.cocktail.name + " has been removed from your list of favorite cocktails",
-          largeBody	: this.cocktail.name + " has been removed from your list of favorite cocktails",
+          title: "Cocktail removed from your favourites",
+          body: this.cocktail.name + " has been removed from your list of favourites cocktails",
+          largeBody	: this.cocktail.name + " has been removed from your list of favourites cocktails",
           id: Date.now(),
         }
       ]
