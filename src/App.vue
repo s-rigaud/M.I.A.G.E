@@ -1,7 +1,7 @@
 <template>
   <div id="inside-app">
     <Navbar />
-
+    <p>{{ $t("test") }}</p>
     <div class="container my-container">
       <router-view />
     </div>
