@@ -32,7 +32,7 @@
           to="/"
           @click="mobileMenuActive = !mobileMenuActive"
         >
-          🏠 Accueil
+          {{ $t("home")}}
         </router-link>
         <router-link
           id="filter"
@@ -40,7 +40,7 @@
           to="/filter"
           @click="mobileMenuActive = !mobileMenuActive"
         >
-          ⚙️ Filtrer
+          {{ $t("filter")}}
         </router-link>
         <router-link
           id="favorite"
@@ -48,7 +48,7 @@
           to="/favorite"
           @click="mobileMenuActive = !mobileMenuActive"
         >
-          ⭐ Favoris
+          {{ $t("favorite")}}
         </router-link>
         <router-link
           id="about-me"
@@ -56,7 +56,7 @@
           to="/about"
           @click="mobileMenuActive = !mobileMenuActive"
         >
-          ➕ A propos de nous
+          {{ $t("aboutUs")}}
         </router-link>
       </div>
     </div>

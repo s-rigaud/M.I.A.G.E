@@ -1,5 +1,5 @@
 <template>
-  <button @click="$router.go(-1)" class="button is-dark">Back to list</button>
+  <button @click="$router.go(-1)" class="button is-dark">{{ $t("return")}}</button>
   <div class="card">
     <div id="content" class="card-content">
       <div class="card-image">
@@ -18,7 +18,7 @@
         <ul>
           <li v-for="ingredient in cocktail.ingredients" :key="ingredient.name">
             <p v-if="ingredient.quantity">
-              {{ ingredient.quantity }} de {{ ingredient.name }}
+              {{ ingredient.quantity }} {{ $t("of") }} {{ ingredient.name }}
             </p>
             <p v-else>{{ ingredient.name }}</p>
           </li>
@@ -26,10 +26,10 @@
       </div>
     </div>
     <button @click="addToFavorite" class="btn add" v-if="!isFavorite()">
-      Ajouter aux favoris ⭐
+      {{ $t("addToFavorite")}}
     </button>
     <button @click="removeFromFavorite" class="btn remove" v-else>
-      Supprimer des favoris ❌
+      {{ $t("removeFromFavorite")}}
     </button>
   </div>
 </template>
