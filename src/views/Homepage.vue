@@ -35,6 +35,7 @@
 <script>
 import CocktailList from "@/components/CocktailList.vue";
 import CocktailRequestMixin from "@/mixins/CocktailRequestMixin.js";
+// import {LocalNotifications} from '@capacitor/local-notifications';
 
 export default {
   name: "Homepage",
@@ -44,6 +45,23 @@ export default {
   mixins: [CocktailRequestMixin],
   beforeMount() {
     this.addRandomCocktailCards();
+    /*LocalNotifications.requestPermissions();
+    LocalNotifications.cancel
+    LocalNotifications.checkPermissions().then(
+      result => {
+        if(result.display === 'granted'){
+          LocalNotifications.schedule({
+              notifications: [
+                {
+                  title: "Need a break ?",
+                  body: "It is aperitif's time, why not try a new cocktail ?",
+                  id: Date.now(),
+                  schedule: { on: 'hour'},
+                }
+              ]
+          });
+        }
+      });*/
   },
   methods: {
     /* Calling API to get the 10 random cocktails of today
