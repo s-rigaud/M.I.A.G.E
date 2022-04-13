@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-info is-small">
+  <section class="hero is-info is-small" style="border-radius: 20%">
     <div class="hero-body">
       <p class="title" style="display: inline-block">
         Bienvenue sur le site M.I.A.G.E

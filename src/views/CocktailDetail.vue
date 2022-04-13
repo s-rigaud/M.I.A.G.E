@@ -1,7 +1,7 @@
 <template>
   <button @click="$router.go(-1)" class="button is-dark">Back to list</button>
   <div class="card">
-    <div class="card-content">
+    <div id="content" class="card-content">
       <div class="card-image">
         <figure class="image">
           <img
@@ -38,7 +38,7 @@
 import CocktailRequestMixin from "@/mixins/CocktailRequestMixin.js";
 //import {PluginListenerHandle} from "@capacitor/core";
 //import {Motion} from "@capacitor/motion";
-import {LocalNotifications} from '@capacitor/local-notifications';
+import { LocalNotifications } from "@capacitor/local-notifications";
 
 export default {
   name: "CocktailFilter",
@@ -50,7 +50,7 @@ export default {
     this.retrieveCocktailDetail();
     // this.setAccelHandler();
   },
-  mounted(){
+  mounted() {
     LocalNotifications.requestPermissions();
   },
   beforeUnmount() {
@@ -96,22 +96,24 @@ export default {
         JSON.stringify({ cocktails: favoriteCocktails })
       );
       this.$router.push({ name: "Favorite" });
-      LocalNotifications.checkPermissions().then(
-        result => {
-          if(result.display === 'granted'){
-            LocalNotifications.schedule({
-              notifications: [
-                {
-                  title: "Cocktail added to your favourites",
-                  body: this.cocktail.name + " has been added to your list of favourites cocktails",
-                  largeBody	: this.cocktail.name + " has been added to your list of favourites cocktails",
-                  id: Date.now()
-                }
-              ]
-            });
-          }
+      LocalNotifications.checkPermissions().then((result) => {
+        if (result.display === "granted") {
+          LocalNotifications.schedule({
+            notifications: [
+              {
+                title: "Cocktail added to your favourites",
+                body:
+                  this.cocktail.name +
+                  " has been added to your list of favourites cocktails",
+                largeBody:
+                  this.cocktail.name +
+                  " has been added to your list of favourites cocktails",
+                id: Date.now(),
+              },
+            ],
+          });
         }
-      )
+      });
     },
     removeFromFavorite() {
       let favoriteCocktails = this.loadFavoriteCocktails();
@@ -125,15 +127,19 @@ export default {
       );
       this.$router.go(-1);
       LocalNotifications.schedule({
-      notifications: [
-        {
-          title: "Cocktail removed from your favourites",
-          body: this.cocktail.name + " has been removed from your list of favourites cocktails",
-          largeBody	: this.cocktail.name + " has been removed from your list of favourites cocktails",
-          id: Date.now(),
-        }
-      ]
-    });
+        notifications: [
+          {
+            title: "Cocktail removed from your favourites",
+            body:
+              this.cocktail.name +
+              " has been removed from your list of favourites cocktails",
+            largeBody:
+              this.cocktail.name +
+              " has been removed from your list of favourites cocktails",
+            id: Date.now(),
+          },
+        ],
+      });
     },
     removeFromArray(array, element) {
       return array.filter(function (value) {
@@ -208,5 +214,12 @@ export default {
     #e2373f
   );
   box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
 }
 </style>
