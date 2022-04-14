@@ -16,7 +16,7 @@ Vue project for Master degree about Cocktails
 
 [x] Un menu et au moins 4 pages
 
-[x] Une application esponsive et sur desktop, tablette, paysage et portrait
+[x] Une application responsive et sur desktop, tablette, paysage et portrait
 
 [x] L’application doit utiliser au moins deux plugins Capacitor (LocalNotifications & Motion)
 
