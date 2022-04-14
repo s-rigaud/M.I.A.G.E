@@ -18,7 +18,7 @@ Vue project for Master degree about Cocktails
 
 [x] Une application esponsive et sur desktop, tablette, paysage et portrait
 
-[x] L’application doit utiliser au moins deux plugins Capacitor (LocalNotifications & Vibrations)
+[x] L’application doit utiliser au moins deux plugins Capacitor (LocalNotifications & Motion)
 
 ## Project setup
 ```
