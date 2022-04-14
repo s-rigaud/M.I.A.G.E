@@ -41,4 +41,4 @@ npx cap open
 ```
 the project will be launched on Android studio
 Wait until the build is done
-Start the project on your Android device by click on the green arrow
+Start the project on your Android device by clicking on the green arrow
