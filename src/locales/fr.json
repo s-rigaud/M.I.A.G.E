@@ -1,33 +1,26 @@
 {
     "welcome": "Bienvenue sur le site M.I.A.G.E",
     "bestCocktail": "Voici les meilleurs cocktails du jour",
-
     "home": "🏠 Accueil",
     "filter": "⚙️ Filtrer",
     "favorite": "⭐ Favoris",
     "aboutUs": "➕ A propos de nous",
-    
-    "addToFavorite" : "Ajouter aux favoris ⭐",
+    "addToFavorite": "Ajouter aux favoris ⭐",
     "removeFromFavorite": "Supprimer des favoris ❌",
-    
     "return": "Retour à la liste",
-
     "noResult": "Pas de cocktails trouvés pour cette page",
     "backHome": "Retour à l'accueil",
-
-    "of": " de ",
-
+    "of": "de",
     "history": "Historique",
-    "founded" : "Fondée en 2020 par trois étudiants miagistes nantais",
-    "application" : "Application en service",
+    "founded": "Fondée en 2020 par trois étudiants miagistes nantais",
+    "application": "Application en service",
     "applicationDetail1": "M.I.A.G.E ou Martini Izarra Amaretto Gin Eau de vie",
-    "applicationDetail2":"L'application qui vous permet de briller en soirée",
-    "applicationDetail3":"Grâce à elle vous pouvez réaliser un cocktail en toute situation en fonction des boissons que vous possedez",
+    "applicationDetail2": "L'application qui vous permet de briller en soirée",
+    "applicationDetail3": "Grâce à elle vous pouvez réaliser un cocktail en toute situation en fonction des boissons que vous possedez",
     "contact": "Nous contacter",
-    "mail": "pitchounous&co@gmail.com",
+    "mail": "pitchounous&co",
     "phone": "06 66 77 88 99",
-    "adress": "25 rue de la Grange-au-Loup",
+    "address": "25 rue de la Grange-au-Loup",
     "city": "44000 Nantes",
-
     "socialNetwork": "Nos réseaux sociaux"
 }

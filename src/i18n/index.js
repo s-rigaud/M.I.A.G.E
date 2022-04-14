@@ -4,6 +4,9 @@ const messages = {
     fr: {
         ...require('@/locales/fr.json'),
     },
+    en: {
+        ...require('@/locales/en.json'),
+    },
 }
 
 const VueI18n = new createI18n({

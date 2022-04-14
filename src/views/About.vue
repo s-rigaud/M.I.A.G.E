@@ -4,33 +4,26 @@
 
     <div class="columns" align="left">
       <div class="column is-two-thirds">
-        <h1 class="subtitle has-text-weight-bold">{{ $t("history")}}</h1>
-        <p>{{ $t("founded")}}</p>
+        <h1 class="subtitle has-text-weight-bold">{{ $t("history") }}</h1>
+        <p>{{ $t("founded") }}</p>
 
-        <h1 class="subtitle has-text-weight-bold">{{ $t("application")}}</h1>
+        <h1 class="subtitle has-text-weight-bold">{{ $t("application") }}</h1>
         <p>
-          {{ $t("applicationDetail1")}}<br />
-          {{ $t("applicationDetail2")}}<br />
-          {{ $t("applicationDetail3")}}
+          {{ $t("applicationDetail1") }}<br />
+          {{ $t("applicationDetail2") }}<br />
+          {{ $t("applicationDetail3") }}
         </p>
 
-        <h1 class="subtitle has-text-weight-bold">{{ $t("contact")}}</h1>
+        <h1 class="subtitle has-text-weight-bold">{{ $t("contact") }}</h1>
         <ul>
-          <li>{{ $t("mail")}}</li>
+          <li>{{ $t("mail") }}&#64;gmail.com</li>
           <span class="icon">
             <i class="fas fa-home"></i>
           </span>
-          <li>{{ $t("phone")}}</li>
-          <li>{{ $t("adress")}}</li>
-          <li>{{ $t("city")}}</li>
+          <li>{{ $t("phone") }}</li>
+          <li>{{ $t("address") }}</li>
+          <li>{{ $t("city") }}</li>
         </ul>
-
-        <h1 class="subtitle has-text-weight-bold">{{ $t("socialNetwork")}}</h1>
-        <div>
-          <span class="icon is-large">
-            <ion-icon size="large" name="logo-linkedin"></ion-icon>
-          </span>
-        </div>
       </div>
       <div class="column">
         <img :src="image1" alt="Logo de l'entreprise" />

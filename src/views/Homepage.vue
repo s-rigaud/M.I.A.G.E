@@ -2,7 +2,7 @@
   <section class="hero is-info is-small" style="border-radius: 20%">
     <div class="hero-body">
       <p class="title" style="display: inline-block">
-            {{ $t("welcome") }}
+        {{ $t("welcome") }}
       </p>
       <lord-icon
         src="https://cdn.lordicon.com/slkvcfos.json"

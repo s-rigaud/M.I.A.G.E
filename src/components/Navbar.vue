@@ -32,7 +32,7 @@
           to="/"
           @click="mobileMenuActive = !mobileMenuActive"
         >
-          {{ $t("home")}}
+          {{ $t("home") }}
         </router-link>
         <router-link
           id="filter"
@@ -40,7 +40,7 @@
           to="/filter"
           @click="mobileMenuActive = !mobileMenuActive"
         >
-          {{ $t("filter")}}
+          {{ $t("filter") }}
         </router-link>
         <router-link
           id="favorite"
@@ -48,7 +48,7 @@
           to="/favorite"
           @click="mobileMenuActive = !mobileMenuActive"
         >
-          {{ $t("favorite")}}
+          {{ $t("favorite") }}
         </router-link>
         <router-link
           id="about-me"
@@ -56,8 +56,20 @@
           to="/about"
           @click="mobileMenuActive = !mobileMenuActive"
         >
-          {{ $t("aboutUs")}}
+          {{ $t("aboutUs") }}
         </router-link>
+      </div>
+      <div class="navbar-end">
+        <div class="select is-primary">
+          <select @change="updateLocale($event)">
+            <option
+              v-for="locale in sortedLocales"
+              :key="locale"
+              :value="locale"
+              :text="locale"
+            ></option>
+          </select>
+        </div>
       </div>
     </div>
   </nav>
@@ -66,10 +78,26 @@
 <script>
 export default {
   name: "Navbar",
+  computed: {
+    sortedLocales() {
+      // Set current locale first (preselected option)
+      let locales = this.$i18n.availableLocales;
+      const currentLocale = this.$i18n.locale;
+      locales = locales.filter((l) => l != currentLocale);
+      locales.unshift(currentLocale);
+      return locales;
+    },
+  },
   data() {
     return {
       mobileMenuActive: false,
     };
+  },
+  methods: {
+    updateLocale(event) {
+      this.$i18n.locale = event.target.value;
+      this.mobileMenuActive = !this.mobileMenuActive;
+    },
   },
 };
 </script>

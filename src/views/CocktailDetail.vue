@@ -1,5 +1,7 @@
 <template>
-  <button @click="$router.go(-1)" class="button is-dark">{{ $t("return")}}</button>
+  <button @click="$router.go(-1)" class="button is-dark">
+    {{ $t("return") }}
+  </button>
   <div class="card">
     <div id="content" class="card-content">
       <div class="card-image">
@@ -26,10 +28,10 @@
       </div>
     </div>
     <button @click="addToFavorite" class="btn add" v-if="!isFavorite()">
-      {{ $t("addToFavorite")}}
+      {{ $t("addToFavorite") }}
     </button>
     <button @click="removeFromFavorite" class="btn remove" v-else>
-      {{ $t("removeFromFavorite")}}
+      {{ $t("removeFromFavorite") }}
     </button>
   </div>
 </template>

@@ -10,9 +10,9 @@
     />
   </div>
   <div v-else>
-    <h1>{{ $t("noResult")}}</h1>
+    <h1>{{ $t("noResult") }}</h1>
     <button @click="$router.push({ name: 'Home' })" class="button is-dark">
-      {{ $t("backHome")}}
+      {{ $t("backHome") }}
     </button>
   </div>
 </template>

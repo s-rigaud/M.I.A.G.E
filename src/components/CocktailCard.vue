@@ -27,7 +27,9 @@
             <ul>
               <li v-for="ingredient in ingredients" :key="ingredient.name">
                 <p v-if="ingredient.quantity">
-                  {{ ingredient.quantity }} de {{ ingredient.name }}
+                  {{ ingredient.quantity }}
+                  {{ $t("of") }}
+                  {{ ingredient.name }}
                 </p>
                 <p v-else>{{ ingredient.name }}</p>
               </li>
