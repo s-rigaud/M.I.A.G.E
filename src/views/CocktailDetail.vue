@@ -36,8 +36,7 @@
 
 <script>
 import CocktailRequestMixin from "@/mixins/CocktailRequestMixin.js";
-//import {PluginListenerHandle} from "@capacitor/core";
-//import {Motion} from "@capacitor/motion";
+import {Motion} from "@capacitor/motion";
 import {LocalNotifications} from '@capacitor/local-notifications';
 
 export default {
@@ -48,23 +47,23 @@ export default {
   mixins: [CocktailRequestMixin],
   beforeMount() {
     this.retrieveCocktailDetail();
-    // this.setAccelHandler();
+    console.log("in beforemounted");
   },
-  mounted(){
+  mounted() {
     LocalNotifications.requestPermissions();
+    console.log("in mounted");
+    this.setShakerListener();
+    console.log("in mounted after sethandler");
   },
   beforeUnmount() {
     // Remove all listeners
-    //Motion.removeAllListeners();
+    Motion.removeAllListeners();
     // Stop the acceleration listener
-    /*if (this.accelHandler) {
-        this.accelHandler.remove();
-    }*/
+    console.log("in beforeUnmounted");
   },
   data() {
     return {
       cocktail: { id: this.cocktailId },
-      //accelHandler: PluginListenerHandle,
     };
   },
   methods: {
@@ -72,22 +71,29 @@ export default {
       const apiCocktails = await this.retrieveSingleCocktail(this.cocktailId);
       this.cocktail = this.parseCocktailFromAPI(apiCocktails);
     },
-    /*async setAccelHandler() {
-      // Once the user approves, can start listening:
-      await Motion.addListener("accel", (event) => {
-        if (
-          event.acceleration.x > 14 ||
-          event.acceleration.x < -14 ||
-          event.acceleration.y > 14 ||
-          (event.acceleration.y < -14 && event.interval > 8)
-        ) {
-          console.log("accel interval", event.interval);
-          console.log("accel x", event.acceleration.x);
-          console.log("accel y", event.acceleration.y);
-          console.log("Device motion event:", event);
+    async setShakerListener() {
+      console.log("Setter for handler shaker");
+      try {
+        console.log("in try before adding listener to motion");
+        if(!this.isFavorite()){
+          await Motion.addListener('accel', event => {
+            if(event.acceleration.x >  6  
+            || event.acceleration.x < -6 
+            || event.acceleration.y >  6 
+            || event.acceleration.y < -6){
+              console.log("Skake shake!");
+              Motion.removeAllListeners();
+              this.addToFavorite();
+              console.log("create TimeOut");
+            }
+          });
+          console.log("after adding listener to motion");
         }
-      });
-    },*/
+      } catch (e) {
+        console.log("Error while adding listener to motion sensor");
+        return;
+      }
+    },
     addToFavorite() {
       let favoriteCocktails = this.loadFavoriteCocktails();
       favoriteCocktails.push(this.cocktailId);
@@ -95,7 +101,6 @@ export default {
         "FavoriteCocktails",
         JSON.stringify({ cocktails: favoriteCocktails })
       );
-      this.$router.push({ name: "Favorite" });
       LocalNotifications.checkPermissions().then(
         result => {
           if(result.display === 'granted'){
@@ -112,6 +117,7 @@ export default {
           }
         }
       )
+      this.$router.push({ name: "Favorite" });
     },
     removeFromFavorite() {
       let favoriteCocktails = this.loadFavoriteCocktails();
@@ -123,7 +129,6 @@ export default {
         "FavoriteCocktails",
         JSON.stringify({ cocktails: favoriteCocktails })
       );
-      this.$router.go(-1);
       LocalNotifications.schedule({
       notifications: [
         {
@@ -134,6 +139,7 @@ export default {
         }
       ]
     });
+    this.$router.go(-1);
     },
     removeFromArray(array, element) {
       return array.filter(function (value) {
