@@ -6,6 +6,7 @@
           src="http://www.miage.fr/wp-content/uploads/2020/11/MIAGE_LOGO-SEUL_COULEURS.png"
           width="112"
           height="28"
+          alt="Logo MIAGE"
         />
       </a>
 
