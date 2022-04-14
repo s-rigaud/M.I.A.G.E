@@ -22,7 +22,7 @@ Vue project for Master degree about Cocktails
 
 LocalNotification plugin is used to send notifications to the user when a cocktail is added or removed from the favourites cocktails' list. A notification is also scheduled at 4:30 pm every day to notify the user that it's aperitif time.
 
-Motion plugin is used to add a cocktail to the list of favourites. To do so you need to go on a cocktail detail page and shake you phone. For now it only works on the first cocktail detail page opened in use. To be able to add another cocktail to the list of favourites cocktails by shaking you phone, you need to close the application, reopen it and click on a new cocktail to shake.
+Motion plugin is used to add a cocktail to the list of favourites. To do so you need to go on a cocktail detail page and shake you phone. For now it only works on the first cocktail detail page opened in use. To be able to add another cocktail to the list by shaking you phone, you need to close the application, reopen it and click on a new cocktail to shake.
 
 ## Project setup
 ```
