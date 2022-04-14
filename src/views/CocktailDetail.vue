@@ -49,19 +49,13 @@ export default {
   mixins: [CocktailRequestMixin],
   beforeMount() {
     this.retrieveCocktailDetail();
-    console.log("in beforemounted");
   },
   mounted() {
     LocalNotifications.requestPermissions();
-    console.log("in mounted");
     this.setShakerListener();
-    console.log("in mounted after sethandler");
   },
   beforeUnmount() {
-    // Remove all listeners
     Motion.removeAllListeners();
-    // Stop the acceleration listener
-    console.log("in beforeUnmounted");
   },
   data() {
     return {
@@ -74,22 +68,17 @@ export default {
       this.cocktail = this.parseCocktailFromAPI(apiCocktails);
     },
     async setShakerListener() {
-      console.log("Setter for handler shaker");
       try {
-        console.log("in try before adding listener to motion");
-        if(!this.isFavorite()){
-          await Motion.addListener('accel', event => {
-            if(event.acceleration.x >  6  
-            || event.acceleration.x < -6 
-            || event.acceleration.y >  6 
-            || event.acceleration.y < -6){
+        if (!this.isFavorite()) {
+          await Motion.addListener('accel', (event) => {
+            if (event.acceleration.x >  6  
+             || event.acceleration.x < -6 
+             || event.acceleration.y >  6 
+             || event.acceleration.y < -6) {
               console.log("Skake shake!");
-              Motion.removeAllListeners();
               this.addToFavorite();
-              console.log("create TimeOut");
             }
           });
-          console.log("after adding listener to motion");
         }
       } catch (e) {
         console.log("Error while adding listener to motion sensor");
