@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import CocktailRequestMixin from "@/mixins/CocktailRequestMixin.js";
 import CocktailList from "@/components/CocktailList.vue";
+import CocktailRequestMixin from "@/mixins/CocktailRequestMixin.js";
 
 export default {
   name: "Homepage",

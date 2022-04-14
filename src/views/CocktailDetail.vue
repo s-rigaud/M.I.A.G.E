@@ -1,7 +1,9 @@
 <template>
-  <button @click="$router.go(-1)" class="button is-dark">Back to list</button>
+  <button @click="$router.go(-1)" class="button is-dark">
+    {{ $t("return") }}
+  </button>
   <div class="card">
-    <div class="card-content">
+    <div id="content" class="card-content">
       <div class="card-image">
         <figure class="image">
           <img
@@ -18,7 +20,7 @@
         <ul>
           <li v-for="ingredient in cocktail.ingredients" :key="ingredient.name">
             <p v-if="ingredient.quantity">
-              {{ ingredient.quantity }} de {{ ingredient.name }}
+              {{ ingredient.quantity }} {{ $t("of") }} {{ ingredient.name }}
             </p>
             <p v-else>{{ ingredient.name }}</p>
           </li>
@@ -26,10 +28,10 @@
       </div>
     </div>
     <button @click="addToFavorite" class="btn add" v-if="!isFavorite()">
-      Ajouter aux favoris ⭐
+      {{ $t("addToFavorite") }}
     </button>
     <button @click="removeFromFavorite" class="btn remove" v-else>
-      Supprimer des favoris ❌
+      {{ $t("removeFromFavorite") }}
     </button>
   </div>
 </template>
@@ -101,22 +103,24 @@ export default {
         "FavoriteCocktails",
         JSON.stringify({ cocktails: favoriteCocktails })
       );
-      LocalNotifications.checkPermissions().then(
-        result => {
-          if(result.display === 'granted'){
-            LocalNotifications.schedule({
-              notifications: [
-                {
-                  title: "Cocktail added to your favourites",
-                  body: this.cocktail.name + " has been added to your list of favourites cocktails",
-                  largeBody	: this.cocktail.name + " has been added to your list of favourites cocktails",
-                  id: Date.now()
-                }
-              ]
-            });
-          }
+      LocalNotifications.checkPermissions().then((result) => {
+        if (result.display === "granted") {
+          LocalNotifications.schedule({
+             notifications: [
+              {
+                title: "Cocktail added to your favourites",
+                body:
+                  this.cocktail.name +
+                  " has been added to your list of favourites cocktails",
+                largeBody:
+                  this.cocktail.name +
+                  " has been added to your list of favourites cocktails",
+                id: Date.now(),
+              },
+            ],
+          });
         }
-      )
+      });
       this.$router.push({ name: "Favorite" });
     },
     removeFromFavorite() {
@@ -129,17 +133,25 @@ export default {
         "FavoriteCocktails",
         JSON.stringify({ cocktails: favoriteCocktails })
       );
-      LocalNotifications.schedule({
-      notifications: [
-        {
-          title: "Cocktail removed from your favourites",
-          body: this.cocktail.name + " has been removed from your list of favourites cocktails",
-          largeBody	: this.cocktail.name + " has been removed from your list of favourites cocktails",
-          id: Date.now(),
-        }
-      ]
-    });
-    this.$router.go(-1);
+      LocalNotifications.checkPermissions().then((result) => {
+          if (result.display === 'granted') {
+            LocalNotifications.schedule({
+              notifications: [
+                {
+                  title: "Cocktail removed from your favourites",
+                  body: 
+                    this.cocktail.name +
+                    " has been removed from your list of favourites cocktails",
+                  largeBody:
+                    this.cocktail.name +
+                    " has been removed from your list of favourites cocktails",
+                  id: Date.now(),
+                },
+              ],
+            });
+          }
+      });
+      this.$router.go(-1);
     },
     removeFromArray(array, element) {
       return array.filter(function (value) {
@@ -214,5 +226,12 @@ export default {
     #e2373f
   );
   box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
 }
 </style>

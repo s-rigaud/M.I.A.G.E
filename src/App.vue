@@ -1,7 +1,6 @@
 <template>
   <div id="inside-app">
     <Navbar />
-
     <div class="container my-container">
       <router-view />
     </div>
@@ -28,13 +27,16 @@ export default {
   color: #2c3e50;
   min-height: 100vh;
 }
-#inside-app{
-    min-height: 100vh;
+#inside-app {
+  min-height: 100vh;
 }
 .container {
   background-color: #ccc;
   padding: 10px;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 body {

@@ -10,9 +10,9 @@
     />
   </div>
   <div v-else>
-    <h1>Pas de cocktails trouvés pour cette page</h1>
+    <h1>{{ $t("noResult") }}</h1>
     <button @click="$router.push({ name: 'Home' })" class="button is-dark">
-      Retourner à l'accueil
+      {{ $t("backHome") }}
     </button>
   </div>
 </template>

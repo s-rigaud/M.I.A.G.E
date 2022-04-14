@@ -1,8 +1,8 @@
 <template>
-  <section class="hero is-info is-small">
+  <section class="hero is-info is-small" style="border-radius: 20%">
     <div class="hero-body">
       <p class="title" style="display: inline-block">
-        Bienvenue sur le site M.I.A.G.E
+        {{ $t("welcome") }}
       </p>
       <lord-icon
         src="https://cdn.lordicon.com/slkvcfos.json"
@@ -16,7 +16,7 @@
       <br />
 
       <h1 id="title" class="subtitle is-italic" style="display: inline-block">
-        Voici les meilleurs cocktails du jour
+        {{ $t("bestCocktail") }}
       </h1>
       <lord-icon
         id="glass"

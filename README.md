@@ -8,6 +8,18 @@ Vue project for Master degree about Cocktails
 * Gin
 * Eau de vie
 
+## Checklist
+
+[x] Une API REST (REST-like mais la seule [bonne API gratuite de cocktail](https://www.thecocktaildb.com/))
+
+[x] Projet VueJS qui se lance sans soucis d'installation
+
+[x] Un menu et au moins 4 pages
+
+[x] Une application responsive et sur desktop, tablette, paysage et portrait
+
+[x] L’application doit utiliser au moins deux plugins Capacitor (LocalNotifications & Motion)
+
 ## Project setup
 ```
 npm install
@@ -24,17 +36,9 @@ npm run build
 npm install --save @capacitor/motion
 npm i @capacitor/android
 npm run build
-npx cap sync 
-npx cap open 
+npx cap sync
+npx cap open
 ```
 the project will be launched on Android studio
 Wait until the build is done
-Start the projec on your Android device by click on the green arrow
-
-## Checklist
-
-[x] Une API REST (REST-like mais la seule [bonne API gratuite de cocktail](https://www.thecocktaildb.com/))
-[x] Projet VueJS qui se lance sans soucis d'install 
-[x] Un menu et au moins 4 pages
-[x] Une application esponsive et sur desktop, tablette, paysage et portrait
-[x] L’application doit utiliser au moins deux plugins Capacitor (LocalNotifications & Vibrations)
+Start the project on your Android device by clicking on the green arrow
