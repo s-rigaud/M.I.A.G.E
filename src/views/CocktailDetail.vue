@@ -38,9 +38,8 @@
 
 <script>
 import CocktailRequestMixin from "@/mixins/CocktailRequestMixin.js";
-//import {PluginListenerHandle} from "@capacitor/core";
-//import {Motion} from "@capacitor/motion";
-import { LocalNotifications } from "@capacitor/local-notifications";
+import {Motion} from "@capacitor/motion";
+import {LocalNotifications} from '@capacitor/local-notifications';
 
 export default {
   name: "CocktailFilter",
@@ -50,23 +49,17 @@ export default {
   mixins: [CocktailRequestMixin],
   beforeMount() {
     this.retrieveCocktailDetail();
-    // this.setAccelHandler();
   },
   mounted() {
     LocalNotifications.requestPermissions();
+    this.setShakerListener();
   },
   beforeUnmount() {
-    // Remove all listeners
-    //Motion.removeAllListeners();
-    // Stop the acceleration listener
-    /*if (this.accelHandler) {
-        this.accelHandler.remove();
-    }*/
+    Motion.removeAllListeners();
   },
   data() {
     return {
       cocktail: { id: this.cocktailId },
-      //accelHandler: PluginListenerHandle,
     };
   },
   methods: {
@@ -74,22 +67,24 @@ export default {
       const apiCocktails = await this.retrieveSingleCocktail(this.cocktailId);
       this.cocktail = this.parseCocktailFromAPI(apiCocktails);
     },
-    /*async setAccelHandler() {
-      // Once the user approves, can start listening:
-      await Motion.addListener("accel", (event) => {
-        if (
-          event.acceleration.x > 14 ||
-          event.acceleration.x < -14 ||
-          event.acceleration.y > 14 ||
-          (event.acceleration.y < -14 && event.interval > 8)
-        ) {
-          console.log("accel interval", event.interval);
-          console.log("accel x", event.acceleration.x);
-          console.log("accel y", event.acceleration.y);
-          console.log("Device motion event:", event);
+    async setShakerListener() {
+      try {
+        if (!this.isFavorite()) {
+          await Motion.addListener('accel', (event) => {
+            if (event.acceleration.x >  6  
+             || event.acceleration.x < -6 
+             || event.acceleration.y >  6 
+             || event.acceleration.y < -6) {
+              console.log("Skake shake!");
+              this.addToFavorite();
+            }
+          });
         }
-      });
-    },*/
+      } catch (e) {
+        console.log("Error while adding listener to motion sensor");
+        return;
+      }
+    },
     addToFavorite() {
       let favoriteCocktails = this.loadFavoriteCocktails();
       favoriteCocktails.push(this.cocktailId);
@@ -97,11 +92,10 @@ export default {
         "FavoriteCocktails",
         JSON.stringify({ cocktails: favoriteCocktails })
       );
-      this.$router.push({ name: "Favorite" });
       LocalNotifications.checkPermissions().then((result) => {
         if (result.display === "granted") {
           LocalNotifications.schedule({
-            notifications: [
+             notifications: [
               {
                 title: "Cocktail added to your favourites",
                 body:
@@ -116,6 +110,7 @@ export default {
           });
         }
       });
+      this.$router.push({ name: "Favorite" });
     },
     removeFromFavorite() {
       let favoriteCocktails = this.loadFavoriteCocktails();
@@ -127,21 +122,25 @@ export default {
         "FavoriteCocktails",
         JSON.stringify({ cocktails: favoriteCocktails })
       );
-      this.$router.go(-1);
-      LocalNotifications.schedule({
-        notifications: [
-          {
-            title: "Cocktail removed from your favourites",
-            body:
-              this.cocktail.name +
-              " has been removed from your list of favourites cocktails",
-            largeBody:
-              this.cocktail.name +
-              " has been removed from your list of favourites cocktails",
-            id: Date.now(),
-          },
-        ],
+      LocalNotifications.checkPermissions().then((result) => {
+          if (result.display === 'granted') {
+            LocalNotifications.schedule({
+              notifications: [
+                {
+                  title: "Cocktail removed from your favourites",
+                  body: 
+                    this.cocktail.name +
+                    " has been removed from your list of favourites cocktails",
+                  largeBody:
+                    this.cocktail.name +
+                    " has been removed from your list of favourites cocktails",
+                  id: Date.now(),
+                },
+              ],
+            });
+          }
       });
+      this.$router.go(-1);
     },
     removeFromArray(array, element) {
       return array.filter(function (value) {
