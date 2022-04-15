@@ -3,7 +3,7 @@
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
         <img
-          src="http://www.miage.fr/wp-content/uploads/2020/11/MIAGE_LOGO-SEUL_COULEURS.png"
+          src="/assets/MIAGELogo.png"
           width="112"
           height="28"
           alt="Logo MIAGE"
