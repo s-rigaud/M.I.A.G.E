@@ -38,8 +38,8 @@
 
 <script>
 import CocktailRequestMixin from "@/mixins/CocktailRequestMixin.js";
-import { Motion } from "@capacitor/motion";
-import { LocalNotifications } from '@capacitor/local-notifications';
+import {Motion} from "@capacitor/motion";
+import {LocalNotifications} from '@capacitor/local-notifications';
 
 export default {
   name: "CocktailFilter",
@@ -97,13 +97,13 @@ export default {
           LocalNotifications.schedule({
              notifications: [
               {
-                title: this.$i18n.t("notificationAddedToFavourite"),
+                title: "Cocktail added to your favourites",
                 body:
                   this.cocktail.name +
-                  this.$i18n.t("notificationAddedToFavouriteDetail"),
+                  " has been added to your list of favourites cocktails",
                 largeBody:
                   this.cocktail.name +
-                  this.$i18n.t("notificationAddedToFavouriteDetail"),
+                  " has been added to your list of favourites cocktails",
                 id: Date.now(),
               },
             ],
@@ -127,13 +127,13 @@ export default {
             LocalNotifications.schedule({
               notifications: [
                 {
-                  title: this.$i18n.t("notificationRemovedFromFavourite"),
+                  title: "Cocktail removed from your favourites",
                   body: 
                     this.cocktail.name +
-                    this.$i18n.t("notificationAddedToFavouriteDetail"),
+                    " has been removed from your list of favourites cocktails",
                   largeBody:
                     this.cocktail.name +
-                    this.$i18n.t("notificationAddedToFavouriteDetail"),
+                    " has been removed from your list of favourites cocktails",
                   id: Date.now(),
                 },
               ],

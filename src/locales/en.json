@@ -22,11 +22,5 @@
     "phone": "06 66 77 88 99",
     "address": "25 rue de la Grange-au-Loup",
     "city": "44000 Nantes",
-    "socialNetwork": "Social medias",
-    "notificationAddedToFavourite": "Cocktail added to your favourites",
-    "notificationAddedToFavouriteDetail": " has been added to your list of favourites cocktails",
-    "notificationRemovedFromFavourite": "Cocktail deleted from your favourites",
-    "notificationRemovedFromFavouriteDetail": " has been added to your list of favourites cocktails",
-    "notificationAperitif": "Need a break?",
-    "notificationAperitifDetail": "It is aperitif's time! why not try a new cocktail?"
+    "socialNetwork": "Social medias"
 }
