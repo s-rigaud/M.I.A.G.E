@@ -52,8 +52,8 @@ export default {
         LocalNotifications.schedule({
           notifications: [
             {
-              title: "Need a break?",
-              body: "It is aperitif's time! why not try a new cocktail?",
+              title: this.$i18n.t("notificationAperitif"),
+              body: this.$i18n.t("notificationAperitifDetail"),
               id: Date.now(),
               schedule: {
                 on: {
